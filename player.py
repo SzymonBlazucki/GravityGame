@@ -11,9 +11,9 @@ class Player(pygame.sprite.Sprite):
         pg.sprite.Sprite.__init__(self)
         self.game = game
         self.image = pygame.image.load(rocketImage)
+        self.image = pygame.transform.scale(self.image, (50, 63))
         self.mask = pygame.mask.from_surface(self.image)
-        self.imageStart = pygame.image.load(rocketImage)
-        # self.image = pygame.transform.scale(self.image, (50, 63))
+        self.imageStart = self.image
         self.angle = initialAngle
         print(self.image.get_size())
         self.rect = self.image.get_rect()
@@ -30,22 +30,21 @@ class Player(pygame.sprite.Sprite):
             ownFrameAccel.x += sideThrusterA
         if keys[pygame.K_UP]:
             ownFrameAccel.y -= mainThrusterA
-        angleToVertical = self.vel.angle_to(vec(0, -1))
-        return ownFrameAccel.rotate(-angleToVertical)
+        return ownFrameAccel.rotate(self.angle)
 
     def get_alpha(self):
-      alpha = 0
-      keys = pygame.key.get_pressed()
-      if keys[pygame.K_LEFT]:
-          alpha -= sideThrusterAlpha
-      if keys[pygame.K_RIGHT]:
-          alpha += sideThrusterAlpha
-      return alpha
+        alpha = 0
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            alpha += sideThrusterAlpha
+        if keys[pygame.K_RIGHT]:
+            alpha -= sideThrusterAlpha
+        return alpha
 
     def update(self):
         self.omega += self.get_alpha() * timeStep
         dVel = self.get_accel() * timeStep
-        angleDiff = self.vel.angle_to(self.vel + dVel) #+ self.omega * timeStep
+        angleDiff = self.vel.angle_to(self.vel + dVel) + self.omega * timeStep
         self.vel += dVel
         self.angle -= angleDiff
         self.image = pygame.transform.rotozoom(self.imageStart, self.angle, 1)
@@ -53,14 +52,20 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.pos += self.vel * timeStep
         self.rect.center = self.pos
+        print(self.angle)
 
 
 class Planet(pygame.sprite.Sprite):
-    def __init__(self, x, y, a, name):
+    def __init__(self, x, y, gravity, name):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(name)
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.a = a
+        self.gravity = gravity
+
+# class Money(pygame.sprite.Sprite):
+#     def __init__(self):
+#         pygame.sprite.Sprite.__init__(self)
+#

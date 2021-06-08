@@ -4,7 +4,7 @@ fontName = 'arial'
 
 fps = 60
 timeStep = 1000/fps
-sideThrusterA = 0.000006
+sideThrusterA = 0.000002
 mainThrusterA = 0.0002
 sideThrusterAlpha = 0.0003
 initialAngle = 0

@@ -13,6 +13,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
         self.dieSound = pygame.mixer.Sound(crashSound)
+        self.backgroundMusic = pygame.mixer.Sound(backgroundMusic)
+        self.fontName = pygame.font.match_font(fontName)
 
     def new(self):
         self.allSprites = pygame.sprite.Group()
@@ -34,6 +36,8 @@ class Game:
 
     def update(self):
         self.allSprites.update()
+        self.drawText("angular velocity: {} and angle {}".format(self.player.omega, self.player.angle), 50, colors["black"], 200, 200)
+        self.drawText("angular velocity: {} and angle {}", 50, colors["black"], 200, 200)
         # Die condition
         if self.player.rect.top > self.screen.get_height():
             #self.dieSound.play()
@@ -44,7 +48,6 @@ class Game:
         elif pygame.sprite.spritecollide(self.player, self.planets, False, pygame.sprite.collide_mask):
             self.playing = False
             #self.dieSound.play()
-
 
     def startScreen(self):
         pass
@@ -63,6 +66,13 @@ class Game:
         self.screen.fill(backgroundColor)
         self.allSprites.draw(self.screen)
         pygame.display.flip()
+
+    def drawText(self, text, size, color, x, y):
+        font = pygame.font.Font(self.fontName, size)
+        textSurface = font.render(text, True, color)
+        textRect = textSurface.get_rect()
+        textRect.midtop = (x, y)
+        self.screen.blit(textSurface, textRect)
 
 
 g = Game()
