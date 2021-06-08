@@ -13,7 +13,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
         self.dieSound = pygame.mixer.Sound(crashSound)
-        self.backgroundMusic = pygame.mixer.Sound(backgroundMusic)
+        # self.backgroundMusic = pygame.mixer.Sound(backgroundMusic)
         self.fontName = pygame.font.match_font(fontName)
 
     def new(self):
