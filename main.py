@@ -1,5 +1,4 @@
 import pygame, sys, random
-# from pygame.locals import *
 from settings import *
 import numpy as np
 from player import *

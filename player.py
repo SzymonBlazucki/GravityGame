@@ -20,32 +20,25 @@ class Player(pygame.sprite.Sprite):
         self.pos = vec(pos[0], pos[1])
         self.vel = vec(vel[0], vel[1])
         self.omega = 0
-        self.accel = vec(0, 0)
 
     def update(self):
-        self.accel = vec(0, 0)
-        self.tempAccel = vec(0, 0)
+        tempAccel = vec(0, 0)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            self.tempAccel.x = -sideThrusterA
+            tempAccel.x -= sideThrusterA
             self.omega -= sideThrusterAlpha * timeStep
         if keys[pygame.K_RIGHT]:
-            self.tempAccel.x = sideThrusterA
+            tempAccel.x += sideThrusterA
             self.omega += sideThrusterAlpha * timeStep
         if keys[pygame.K_UP]:
-            self.tempAccel.y = -mainThrusterA
-        if keys[pygame.K_SPACE]:  # for debug
-            print(self.vel.angle_to(vec(0, -1)))
+            tempAccel.y -= mainThrusterA
         # find the angle between y axis upwards and velocity vector
         rotate = self.vel.angle_to(vec(0, -1))
         #to accelerate in appropriate direction
-        self.accel = self.tempAccel.rotate(-rotate)
-        dVel = self.accel * timeStep
-        if self.tempAccel.y != 0:
-            print(rotate, self.vel.normalize(), dVel.normalize())
+        accel = tempAccel.rotate(-rotate)
+        dVel = accel * timeStep
         angleDiff = self.vel.angle_to(self.vel + dVel) #+ self.omega * timeStep
         self.vel += dVel
-        # print(self.vel.angle_to(vec(0, -1)))
         self.angle -= angleDiff
         self.image = pygame.transform.rotozoom(self.imageStart, self.angle, 1)
         self.mask = pygame.mask.from_surface(self.image)
