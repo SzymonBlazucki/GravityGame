@@ -65,7 +65,7 @@ class Player(pygame.sprite.Sprite):
 
 
 class Planet(pygame.sprite.Sprite):
-    def __init__(self, x, y, a, name):
+    def __init__(self, x, y, gravity, name):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(name)
         self.mask = pygame.mask.from_surface(self.image)
@@ -76,7 +76,7 @@ class Planet(pygame.sprite.Sprite):
 
     def getPosition(self):
       return self.rect.center
-        self.gravity = gravity
+    #     self.gravity = gravity
 
 # class Money(pygame.sprite.Sprite):
 #     def __init__(self):

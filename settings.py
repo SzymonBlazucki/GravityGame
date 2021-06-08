@@ -13,7 +13,7 @@ rocketImage = "./graphics/rocket2.png"
 backgroundMusic = "Space.mp3"
 crashSound = "Smashing.wav"
 #music from https://www.chosic.com/ and
-planet1 = [150, 300, 0.2, "./graphics/redPlanet.png"]
+planet1 = [150, 600, 0.2, "./graphics/redPlanet.png"]
 
 colors = {
     "white": (255, 255, 255),
