@@ -1,20 +1,22 @@
-width = 600
+width = 1400
 heigth = 1000
 fontName = 'arial'
 
 fps = 60
-timeStep = 1000/fps
+timeStep = 1000 / fps
 sideThrusterA = 0.000002
 mainThrusterA = 0.00002
-sideThrusterAlpha = 0.0003
+sideThrusterAlpha = 0.00027
 initialAngle = 0
-thrusterSound = "Thruster.wav"
-rocketImage = "./graphics/rocket2.png"
-backgroundMusic = "Space.mp3"
+rocketImage = "./graphics/rocket3.png"
+backgroundMusic = "Space.ogg"
 crashSound = "Smashing.wav"
-#music from https://www.chosic.com/ and
-planet1 = [150, 300, 1.5, "./graphics/redPlanet.png"]
-
+moneySound = "classiccoin.wav"
+# music from https://www.chosic.com/ and
+planet1 = [[180, 300, 1.5, "./graphics/fancyPlanet4.png", 0.25], [600, 750, 0.8, "./graphics/fancyPlanet3.png", 0.6],
+           [1000, 350, 1.8, "./graphics/fancyPlanet2.png", 0.4]]
+moneyLoc = [[1150, 400], [580, 520], [90, 200], [950, 200], [400, 920], [850, 820], [290, 400]]
+moneyName = "./graphics/gold.png"
 colors = {
     "white": (255, 255, 255),
     "black": (0, 0, 0),
@@ -29,5 +31,5 @@ colors = {
 }
 backgroundColor = colors['spacegrey']
 
-initialPosition = [500, 900]
-initialVelocity = [0,-0.01]
+initialPosition = [1300, 900]
+initialVelocity = [0, -0.01]
