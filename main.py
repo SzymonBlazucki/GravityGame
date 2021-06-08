@@ -36,14 +36,14 @@ class Game:
         self.allSprites.update()
         # Die condition
         if self.player.rect.top > self.screen.get_height():
-            self.dieSound.play()
+            #self.dieSound.play()
             self.playing = False
         elif self.player.rect.bottom < 0:
             self.playing = False
-            self.dieSound.play()
+            #self.dieSound.play()
         elif pygame.sprite.spritecollide(self.player, self.planets, False, pygame.sprite.collide_mask):
             self.playing = False
-            self.dieSound.play()
+            #self.dieSound.play()
 
 
     def startScreen(self):
