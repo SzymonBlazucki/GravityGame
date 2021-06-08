@@ -5,7 +5,7 @@ fontName = 'arial'
 fps = 60
 timeStep = 1000/fps
 sideThrusterA = 0.000002
-mainThrusterA = 0.0002
+mainThrusterA = 0.00002
 sideThrusterAlpha = 0.0003
 initialAngle = 0
 thrusterSound = "Thruster.wav"
@@ -13,7 +13,7 @@ rocketImage = "./graphics/rocket2.png"
 backgroundMusic = "Space.mp3"
 crashSound = "Smashing.wav"
 #music from https://www.chosic.com/ and
-planet1 = [150, 600, 0.2, "./graphics/redPlanet.png"]
+planet1 = [150, 300, 1.5, "./graphics/redPlanet.png"]
 
 colors = {
     "white": (255, 255, 255),

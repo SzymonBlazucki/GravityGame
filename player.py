@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
             ownFrameAccel.x += sideThrusterA
         if keys[pygame.K_UP]:
             ownFrameAccel.y -= mainThrusterA
-        return ownFrameAccel.rotate(self.angle)
+        return ownFrameAccel.rotate(-self.angle)
 
     def getGravityAccel(self):
       gravityAccel = vec(0, 0)
@@ -56,6 +56,7 @@ class Player(pygame.sprite.Sprite):
         dVel = self.getAccel() * timeStep
         angleDiff = self.omega * timeStep
         self.vel += dVel
+        #print(self.vel.angle_to(vec(0,-1)) , self.angle)
         self.angle -= angleDiff
         self.image = pygame.transform.rotozoom(self.imageStart, self.angle, 1)
         self.mask = pygame.mask.from_surface(self.image)
